@@ -10,11 +10,14 @@ export class CronScheduler<T> {
         if (!resp) return
         resp.forEach(async (el) => await service.add(el))
         console.log(`Cargado: ${task.getTaskName()}`)
+        return true
       } catch (error: any) {
         console.error('Error al realizar la solicitud:', error.message)
+        return false
       } finally {
         console.log('JobFinalizado')
         job.stop()
+        return true
       }
     })
   }
