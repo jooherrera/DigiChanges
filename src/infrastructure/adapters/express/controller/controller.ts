@@ -8,13 +8,19 @@ export class AppController<T> {
 
   get = async (req: Request, res: Response) => {
     try {
-      const params: query = req.query as query
+      const querys: query = req.query as query
 
-      if (params) {
-        return res.json(await this.getByAttr(params))
+      if (this.isEmpty(querys)) {
+        return res.json(await this.paginate(1))
       }
 
-      res.json(await this.service.getAll())
+      if (querys.page) {
+        return res.json(await this.paginate(Number(req.query.page)))
+      }
+
+      if (querys) {
+        return res.json(await this.getByAttr(querys))
+      }
     } catch (error: any) {
       console.log(error.message)
       res.status(500).json('Error interno')
@@ -23,5 +29,13 @@ export class AppController<T> {
 
   private async getByAttr(attr: query) {
     return await this.service.getByAttr(attr)
+  }
+
+  private async paginate(page: number) {
+    return await this.service.getPage(page)
+  }
+
+  private isEmpty(obj: any) {
+    return Object.keys(obj).length === 0
   }
 }

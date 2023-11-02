@@ -13,4 +13,10 @@ export class MongoRepository<T extends { url: string }> implements Repository<T>
   async getByAttr(attributes: Partial<{ [key: string]: string }>): Promise<T[] | null> {
     return await this.model.find(attributes).exec()
   }
+  async getPaginated(page: number, perPage: number): Promise<T[] | null> {
+    return await this.model
+      .find({})
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+  }
 }
