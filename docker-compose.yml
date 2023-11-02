@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  dbLocal:
+    image: mongo:4.4.11
+    container_name: dbLocal
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    volumes:
+      - ./development/mongo-volume:/data/db
+    restart: always
+    ports:
+      - 27017:27017
