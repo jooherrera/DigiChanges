@@ -15,8 +15,9 @@ export class AppController<T> {
       }
 
       res.json(await this.service.getAll())
-    } catch (error) {
-      res.json('ERROR')
+    } catch (error: any) {
+      console.log(error.message)
+      res.status(500).json('Error interno')
     }
   }
 
