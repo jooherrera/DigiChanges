@@ -13,9 +13,9 @@ serverExpress.use(express.json())
 
 serverExpress.get('/', (req, res) => res.json('Home API'))
 
-serverExpress.use('/people', peopleRouter)
-serverExpress.use('/planets', planetRouter)
-serverExpress.use('/films', filmRouter)
-serverExpress.use('/starships', starshipRouter)
+serverExpress.use('/api/v1/people', peopleRouter)
+serverExpress.use('/api/v1/planets', planetRouter)
+serverExpress.use('/api/v1/films', filmRouter)
+serverExpress.use('/api/v1/starships', starshipRouter)
 
 serverExpress.use(notFoundHandler)

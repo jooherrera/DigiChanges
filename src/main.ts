@@ -3,7 +3,7 @@ import { envVars } from '@conf/envConf'
 import { mongoConf } from '@conf/mongoConf'
 import '@conf/schedulerConf'
 
-mongoConf(envVars.URI)
+mongoConf(envVars.URI).connect()
 
 const PORT = envVars.PORT || 5000
 
