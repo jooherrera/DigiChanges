@@ -2,10 +2,12 @@ import { describe, expect, test } from '@jest/globals'
 import request from 'supertest'
 import { serverExpress } from '../src/infrastructure/adapters/express/express-server'
 import { mongoConf } from '../src/infrastructure/conf/mongoConf'
+import dotenv from 'dotenv'
+import path from 'path'
 
-let mongo = mongoConf(
-  'mongodb://admin:admin@localhost:27017/digi?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false'
-)
+dotenv.config({ path: `${path.resolve()}/.env.test` })
+
+let mongo = mongoConf(process.env.URI!)
 
 beforeAll(async () => {
   await mongo.connect()

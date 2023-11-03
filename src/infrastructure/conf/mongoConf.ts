@@ -9,7 +9,7 @@ export const mongoConf = (uri: string) => {
           console.log('Conectado a MongoDB')
         })
         .catch((error) => {
-          console.error('Error al conectar', error)
+          console.error('Error al conectar', error.message)
         })
     },
     close: async () => {
