@@ -5,4 +5,6 @@ import '@conf/schedulerConf'
 
 mongoConf(envVars.URI)
 
-serverExpress.listen(envVars.PORT, () => console.log(`Server ON: ${envVars.PORT}`))
+const PORT = envVars.PORT || 5000
+
+serverExpress.listen(PORT, () => console.log(`Server ON: ${PORT}`))

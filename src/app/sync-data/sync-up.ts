@@ -1,4 +1,4 @@
 export interface SyncUp<T> {
-  run(): Promise<T[] | null | undefined>
+  startSync(elem: T): Promise<void>
   getTaskName(): string
 }
